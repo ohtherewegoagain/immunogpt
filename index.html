@@ -164,38 +164,36 @@
 
 <script>
     const dummyData = {
-        KRAS: {
-            lung: "Moderate immunogenicity. Combination therapies recommended. Mutation Load critical.",
-            colon: "Low immunogenicity. Targeted CAR-T cell therapy advised.",
-            pancreatic: "Poor response. Consider tumor microenvironment modifiers.",
+        "KRAS-G12D": {
+            lung: "High immunogenicity. Checkpoint inhibitor + MEK inhibitor combo advised.",
+            colon: "Low response. Potential for CAR-T cell targeting G12D epitope.",
         },
-        TP53: {
-            lung: "High immunogenicity. Strong candidate for checkpoint inhibitors.",
-            colon: "Moderate immunogenicity. Personalized vaccine trials suitable.",
-            breast: "Varied response. Consider synthetic lethality strategies.",
+        "TP53-R175H": {
+            lung: "Strong response. Synthetic neoantigen vaccine feasible.",
+            breast: "Intermediate immunogenicity. Monitor p53 pathway reactivation.",
         },
-        BRAF: {
-            melanoma: "High immunogenicity. BRAF inhibitors with immune checkpoint blockers advised.",
-            colon: "Limited response. MSI status evaluation required.",
+        "BRAF-V600E": {
+            melanoma: "Very high immunogenicity. Dual BRAF/MEK inhibition + PD-1 therapy recommended.",
+            colon: "Limited response. Consider immunogenicity enhancement strategies.",
         },
-        EGFR: {
-            lung: "EGFR-targeted therapy with low immune activation. Add adjuvant therapy.",
-            brain: "Poor immune response. Investigate alternative pathways.",
+        "EGFR-L858R": {
+            lung: "Targetable. EGFR TKI with immunotherapy in late-stage trials.",
+            brain: "Low immune visibility. Use with BBB-penetrating checkpoint blockers.",
         },
-        PIK3CA: {
-            breast: "Moderate response. mTOR inhibitors can enhance immunogenicity.",
-            ovarian: "Low response. Explore dual inhibition approaches.",
+        "PIK3CA-H1047R": {
+            breast: "Moderate immune engagement. PI3Kα-specific therapy + immune adjuvants advised.",
+            ovarian: "Low immunogenicity. Dual pathway targeting under study.",
         }
     };
 
     document.getElementById("simulation-form").addEventListener("submit", function(event) {
         event.preventDefault();
 
-        const mutation = document.getElementById("mutation").value.toUpperCase();
-        const tumorType = document.getElementById("tumor-type").value.toLowerCase();
-        const mutationLoad = document.getElementById("mutation-load").value;
+        const mutation = document.getElementById("mutation").value.toUpperCase().trim();
+        const tumorType = document.getElementById("tumor-type").value.toLowerCase().trim();
+        const mutationLoad = document.getElementById("mutation-load").value.trim();
 
-        let immuneResponse = "Data unavailable for this combination. Please try another.";
+        let immuneResponse = "Sorry, we don't yet support this mutation-tumor combination.";
 
         if (dummyData[mutation] && dummyData[mutation][tumorType]) {
             immuneResponse = `${dummyData[mutation][tumorType]} Mutation Load: ${mutationLoad}.`;
@@ -204,6 +202,7 @@
         document.getElementById("response-text").textContent = immuneResponse;
     });
 </script>
+
 
 
 </body>
