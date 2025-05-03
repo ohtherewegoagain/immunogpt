@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImmunoGPT Prototype</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        header {
+            background-color: #1f3b5e;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container input[type="text"], .form-container input[type="number"], .form-container input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .form-container button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .form-container button:hover {
+            background-color: #218838;
+        }
+
+        #response {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        footer {
+            background-color: #1f3b5e;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ImmunoGPT Prototype</h1>
+    <p>Predicting Personalized Immune Responses</p>
+</header>
+
+<div class="container">
+    <section class="form-container">
+        <h2>Simulate Your Immune Response</h2>
+        <p>Enter the tumor mutation data below to simulate your immune response:</p>
+        
+        <form id="immune-form">
+            <label for="mutation">Mutation Type (e.g., KRAS, TP53):</label>
+            <input type="text" id="mutation" name="mutation" placeholder="Enter mutation" required>
+
+            <label for="mutation-load">Mutation Load (Number of mutations):</label>
+            <input type="number" id="mutation-load" name="mutation-load" placeholder="Enter mutation load" required>
+
+            <label for="tumor-type">Tumor Type (e.g., Lung, Colon):</label>
+            <input type="text" id="tumor-type" name="tumor-type" placeholder="Enter tumor type" required>
+
+            <button type="submit">Simulate Immune Response</button>
+        </form>
+    </section>
+
+    <section id="response">
+        <h3>Predicted Immune Response</h3>
+        <p id="response-text">Please enter data to simulate your immune response.</p>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2025 ImmunoGPT | All Rights Reserved</p>
+</footer>
+
+<script>
+    // Dummy immune response data for simulation
+    const dummyData = {
+        KRAS: {
+            lung: "Potential high immunogenicity, targeted therapy effective.",
+            colon: "Moderate immunogenicity, consider combination therapies."
+        },
+        TP53: {
+            lung: "Strong immune response expected, check for immune checkpoint inhibitors.",
+            colon: "Low immunogenicity, may require personalized vaccines."
+        }
+    };
+
+    document.getElementById("immune-form").addEventListener("submit", function(event) {
+        event.preventDefault();
+
+        const mutation = document.getElementById("mutation").value.toUpperCase();
+        const mutationLoad = document.getElementById("mutation-load").value;
+        const tumorType = document.getElementById("tumor-type").value.toLowerCase();
+
+        let immuneResponse = "No data available for this combination.";
+        
+        // Check if mutation and tumor type match the dummy data
+        if (dummyData[mutation] && dummyData[mutation][tumorType]) {
+            immuneResponse = `${dummyData[mutation][tumorType]} Mutation load: ${mutationLoad} mutations detected.`;
+        } else {
+            immuneResponse = "Please enter valid mutation and tumor type.";
+        }
+
+        document.getElementById("response-text").textContent = immuneResponse;
+    });
+</script>
+
+</body>
+</html>
