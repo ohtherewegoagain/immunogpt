@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ImmunoGPT</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0f0f0f;
+      color: #f1f1f1;
+      line-height: 1.6;
+    }
+    header, section, footer {
+      padding: 2rem;
+      max-width: 1200px;
+      margin: auto;
+    }
+    header {
+      text-align: center;
+      background: linear-gradient(145deg, #1a1a1a, #232323);
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    header h1 {
+      font-size: 3rem;
+      color: #76c7c0;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    .btn {
+      display: inline-block;
+      margin: 1rem 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #76c7c0;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    h2 {
+      color: #76c7c0;
+      margin-top: 2rem;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background-color: #1e1e1e;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.4);
+    }
+    textarea, select, button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-top: 0.5rem;
+      border-radius: 6px;
+      border: none;
+      font-size: 1rem;
+    }
+    .output-box {
+      background-color: #1e1e1e;
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #999;
+      padding-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI-Powered Immunology, Reimagined.</h1>
+    <p>Tested at Yale Medical School. Trusted by scientists. Built for breakthroughs.</p>
+    <button class="btn">Try the Prototype</button>
+    <button class="btn">Request Early Access</button>
+    <button class="btn">Meet the Founder</button>
+  </header>
+
+  <section>
+    <h2>About ImmunoGPT</h2>
+    <p>
+      ImmunoGPT is a suite of specialized AI models designed to accelerate discovery in immunology,
+      including TCR-antigen binding prediction, vaccine design, immunotherapeutic optimization, and literature synthesis.
+    </p>
+    <ul>
+      <li>✅ Fine-tuned on immune datasets like IEDB, TCIA, VDJdb</li>
+      <li>✅ Modular: Core | TCR | Vax | Mol</li>
+      <li>✅ Built with immunologists, for immunologists</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Tested at Yale School of Medicine</h2>
+    <p>
+      ImmunoGPT's early-stage testing was conducted at Yale School of Medicine through collaborations
+      with neuroscience and immunopathology researchers. The models were used to analyze immune-protein interactions
+      and generate protocol drafts, yielding results comparable to state-of-the-art tools.
+    </p>
+    <em>Demo Yale Logo Placeholder</em>
+  </section>
+
+  <section>
+    <h2>Try the Prototype</h2>
+    <select id="modelSelect">
+      <option value="mol">Molecule Generator</option>
+      <option value="tcr">TCR Binding Predictor</option>
+      <option value="vax">Vaccine Epitope Designer</option>
+      <option value="core">Core Q&A</option>
+    </select>
+    <textarea id="inputText" placeholder="Ask a question or input biological data..."></textarea>
+    <button onclick="generateResponse()">Submit</button>
+    <div class="output-box" id="outputBox" style="display:none;"></div>
+  </section>
+
+  <section>
+    <h2>Meet the Founder</h2>
+    <p><strong>Avani Agarwal</strong><br />
+    Founder & Lead Architect, ImmunoGPT<br />
+    CEO & Creator, Synthera – AI Platform for Drug Discovery<br />
+    RSI India Fellow | Emergent Ventures Fellow (Mercatus Center)<br />
+    R&D Director, Foundation for Health Innovation<br />
+    Harvard Ventures Fellow | Yale School of Medicine Researcher</p>
+
+    <p>
+      Avani is a high school researcher working at the intersection of AI and immunology. She built ImmunoGPT to make
+      cutting-edge immune AI accessible to labs worldwide. Her projects span from epitope prediction to AI-based neuroscience.
+    </p>
+  </section>
+
+  <section>
+    <h2>Use Cases</h2>
+    <div class="card-grid">
+      <div class="card">🎯 Neoantigen vaccine design</div>
+      <div class="card">🧬 Autoimmune target prioritization</div>
+      <div class="card">📚 Literature mining for cytokine networks</div>
+      <div class="card">💊 Drug optimization for checkpoint inhibitors</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Our Models</h2>
+    <div class="card-grid">
+      <div class="card">🧠 <strong>ImmunoGPT-Core</strong><br /> Text Q&A, synthesis, summarization</div>
+      <div class="card">🔬 <strong>ImmunoGPT-TCR</strong><br /> Predicts TCR-peptide binding scores</div>
+      <div class="card">💉 <strong>ImmunoGPT-Vax</strong><br /> Designs epitope candidates from input pathogens</div>
+      <div class="card">🧪 <strong>ImmunoGPT-Mol</strong><br /> Generates immune-relevant small molecules</div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Collaborate With Us</h2>
+    <p>Interested in partnering? Fill out the form below or email us directly.</p>
+    <input type="text" placeholder="Your Name" /><br/>
+    <input type="email" placeholder="Email Address" /><br/>
+    <select>
+      <option>Researcher</option>
+      <option>Biotech</option>
+      <option>Investor</option>
+      <option>Academic Lab</option>
+    </select><br/>
+    <textarea placeholder="Tell us how you’d like to collaborate..."></textarea>
+    <button class="btn">Submit</button>
+  </section>
+
+  <section>
+    <h2>Join the Beta</h2>
+    <p>Get early access, updates, and sneak peeks at v1.0 and API rollout.</p>
+    <input type="email" placeholder="Your email" />
+    <button class="btn">Join Now</button>
+  </section>
+
+  <footer>
+    <p>Privacy Policy | AI Safety Statement</p>
+    <p>ImmunoGPT © 2025. Built with passion by Avani Agarwal.</p>
+  </footer>
+
+  <script>
+    const responses = {
+      mol: [
+        "Generated Molecule: C1=CC=CC=C1",
+        "Predicted molecular weight: 320 Da",
+        "Toxicity Flag: Low",
+        "Immunomodulatory activity score: 7.4",
+        "Lipinski Rule: Passed",
+        "Predicted target: IL-6 pathway",
+        "Bioavailability Score: 0.68",
+        "Topological Polar Surface Area: 62.4",
+        "Prediction Confidence: 91.2%",
+        "Recommended for checkpoint inhibitor studies"
+      ],
+      tcr: [
+        "Predicted binding score: 87.3%",
+        "Cross-reactivity probability: Low",
+        "MHC class: I",
+        "Associated peptide: GILGFVFTL",
+        "CDR3 match: Partial (89%)",
+        "Validation in VDJdb: Confirmed",
+        "Clone frequency rank: Top 5%",
+        "Toxicity risk: Negligible",
+        "Sequence conservation: High",
+        "Functional similarity to known binder"
+      ],
+      vax: [
+        "Designed epitope: SYFPEITHI",
+        "MHC presentation: Strong binder",
+        "Conservation across strains: 94%",
+        "Epitope length: 9-mer",
+        "B-cell linear prediction: High",
+        "No allergenicity detected",
+        "Adjuvant suggested: CpG",
+        "Population coverage: Global (82%)",
+        "Immunogenicity score: 0.84",
+        "Best suited for subunit vaccine"
+      ],
+      core: [
+        "IL-17 plays a critical role in autoimmune inflammation, especially in diseases like psoriasis and RA.",
+        "Summarized Abstract: This study explores cytokine patterns in viral infections, highlighting IL-10 and TNF-alpha pathways.",
+        "Autoimmune disease genes often overlap with cancer immunity checkpoints, requiring careful modulation.",
+        "Top predicted pathway: NF-κB",
+        "Suggested next experiment: Flow cytometry on PBMCs",
+        "Relevant paper: PMID 12345678",
+        "Predicted cytokine storm risk: Moderate",
+        "Gene Ontology Enrichment: immune response, cytokine signaling",
+        "Comparative model score: 92.1% vs DeepImmune",
+        "Most similar known peptide: FLPSDFFPSV"
+      ]
+    };
+
+    function generateResponse() {
+      const model = document.getElementById('modelSelect').value;
+      const outputBox = document.getElementById('outputBox');
+      const randomIndex = Math.floor(Math.random() * responses[model].length);
+      outputBox.style.display = 'block';
+      outputBox.innerText = responses[model][randomIndex];
+    }
+  </script>
+</body>
+</html>
