@@ -183,7 +183,9 @@
     function generateResponse() {
       const model = document.getElementById("model").value;
       const randomResponse = responses[model][Math.floor(Math.random() * responses[model].length)];
-      document.getElementById("response").innerText = randomResponse;
+      const responseBox = document.getElementById("response");
+      responseBox.innerText = randomResponse;
+      responseBox.style.display = "block";
     }
   </script>
 
