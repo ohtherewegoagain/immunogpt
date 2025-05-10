@@ -110,7 +110,7 @@
         <option value="mol">ImmunoGPT-Mol</option>
       </select>
       <input type="text" id="input" placeholder="Enter your query">
-      <button onclick="showResponse()">Enter</button>
+      <button id="submitBtn">Enter</button>
       <div class="response-box" id="response">Response will appear here...</div>
     </div>
   </section>
@@ -135,13 +135,18 @@
       core: ["IL-17 plays a critical role in autoimmune inflammation, especially in diseases like psoriasis and RA.", "Summarized Abstract: This study explores cytokine patterns in viral infections, highlighting IL-10 and TNF-alpha pathways.", "Autoimmune disease genes often overlap with cancer immunity checkpoints, requiring careful modulation.", "Top predicted pathway: NF-κB", "Suggested next experiment: Flow cytometry on PBMCs", "Relevant paper: PMID 12345678", "Predicted cytokine storm risk: Moderate", "Gene Ontology Enrichment: immune response, cytokine signaling", "Comparative model score: 92.1% vs DeepImmune", "Most similar known peptide: FLPSDFFPSV"]
     };
 
-    function showResponse() {
+    document.getElementById("submitBtn").addEventListener("click", () => {
       const model = document.getElementById("model").value;
       const responseBox = document.getElementById("response");
-      const randomResponse = responses[model][Math.floor(Math.random() * responses[model].length)];
-      responseBox.innerText = randomResponse;
+      const inputQuery = document.getElementById("input").value;
+      if (!inputQuery.trim()) {
+        responseBox.innerText = "Please enter a query to proceed.";
+      } else {
+        const randomResponse = responses[model][Math.floor(Math.random() * responses[model].length)];
+        responseBox.innerText = randomResponse;
+      }
       responseBox.style.display = "block";
-    }
+    });
   </script>
 
 </body>
