@@ -69,6 +69,7 @@
       background: #333;
       padding: 15px;
       border-radius: 6px;
+      display: none;
     }
   </style>
 </head>
@@ -109,6 +110,7 @@
         <option value="mol">ImmunoGPT-Mol</option>
       </select>
       <input type="text" id="input" placeholder="Enter your query">
+      <button onclick="showResponse()">Enter</button>
       <div class="response-box" id="response">Response will appear here...</div>
     </div>
   </section>
@@ -127,63 +129,16 @@
 
   <script>
     const responses = {
-      mol: [
-        "Generated Molecule: C1=CC=CC=C1",
-        "Predicted molecular weight: 320 Da",
-        "Toxicity Flag: Low",
-        "Immunomodulatory activity score: 7.4",
-        "Lipinski Rule: Passed",
-        "Predicted target: IL-6 pathway",
-        "Bioavailability Score: 0.68",
-        "Topological Polar Surface Area: 62.4",
-        "Prediction Confidence: 91.2%",
-        "Recommended for checkpoint inhibitor studies"
-      ],
-      tcr: [
-        "Predicted binding score: 87.3%",
-        "Cross-reactivity probability: Low",
-        "MHC class: I",
-        "Associated peptide: GILGFVFTL",
-        "CDR3 match: Partial (89%)",
-        "Validation in VDJdb: Confirmed",
-        "Clone frequency rank: Top 5%",
-        "Toxicity risk: Negligible",
-        "Sequence conservation: High",
-        "Functional similarity to known binder"
-      ],
-      vax: [
-        "Designed epitope: SYFPEITHI",
-        "MHC presentation: Strong binder",
-        "Conservation across strains: 94%",
-        "Epitope length: 9-mer",
-        "B-cell linear prediction: High",
-        "No allergenicity detected",
-        "Adjuvant suggested: CpG",
-        "Population coverage: Global (82%)",
-        "Immunogenicity score: 0.84",
-        "Best suited for subunit vaccine"
-      ],
-      core: [
-        "IL-17 plays a critical role in autoimmune inflammation, especially in diseases like psoriasis and RA.",
-        "Summarized Abstract: This study explores cytokine patterns in viral infections, highlighting IL-10 and TNF-alpha pathways.",
-        "Autoimmune disease genes often overlap with cancer immunity checkpoints, requiring careful modulation.",
-        "Top predicted pathway: NF-κB",
-        "Suggested next experiment: Flow cytometry on PBMCs",
-        "Relevant paper: PMID 12345678",
-        "Predicted cytokine storm risk: Moderate",
-        "Gene Ontology Enrichment: immune response, cytokine signaling",
-        "Comparative model score: 92.1% vs DeepImmune",
-        "Most similar known peptide: FLPSDFFPSV"
-      ]
+      mol: ["Generated Molecule: C1=CC=CC=C1", "Predicted molecular weight: 320 Da", "Toxicity Flag: Low", "Immunomodulatory activity score: 7.4", "Lipinski Rule: Passed", "Predicted target: IL-6 pathway", "Bioavailability Score: 0.68", "Topological Polar Surface Area: 62.4", "Prediction Confidence: 91.2%", "Recommended for checkpoint inhibitor studies"],
+      tcr: ["Predicted binding score: 87.3%", "Cross-reactivity probability: Low", "MHC class: I", "Associated peptide: GILGFVFTL", "CDR3 match: Partial (89%)", "Validation in VDJdb: Confirmed", "Clone frequency rank: Top 5%", "Toxicity risk: Negligible", "Sequence conservation: High", "Functional similarity to known binder"],
+      vax: ["Designed epitope: SYFPEITHI", "MHC presentation: Strong binder", "Conservation across strains: 94%", "Epitope length: 9-mer", "B-cell linear prediction: High", "No allergenicity detected", "Adjuvant suggested: CpG", "Population coverage: Global (82%)", "Immunogenicity score: 0.84", "Best suited for subunit vaccine"],
+      core: ["IL-17 plays a critical role in autoimmune inflammation, especially in diseases like psoriasis and RA.", "Summarized Abstract: This study explores cytokine patterns in viral infections, highlighting IL-10 and TNF-alpha pathways.", "Autoimmune disease genes often overlap with cancer immunity checkpoints, requiring careful modulation.", "Top predicted pathway: NF-κB", "Suggested next experiment: Flow cytometry on PBMCs", "Relevant paper: PMID 12345678", "Predicted cytokine storm risk: Moderate", "Gene Ontology Enrichment: immune response, cytokine signaling", "Comparative model score: 92.1% vs DeepImmune", "Most similar known peptide: FLPSDFFPSV"]
     };
 
-    document.getElementById("model").addEventListener("change", generateResponse);
-    document.getElementById("input").addEventListener("input", generateResponse);
-
-    function generateResponse() {
+    function showResponse() {
       const model = document.getElementById("model").value;
-      const randomResponse = responses[model][Math.floor(Math.random() * responses[model].length)];
       const responseBox = document.getElementById("response");
+      const randomResponse = responses[model][Math.floor(Math.random() * responses[model].length)];
       responseBox.innerText = randomResponse;
       responseBox.style.display = "block";
     }
